@@ -1,46 +1,68 @@
 <link rel="import" href="../../../../../bower_components/polymer/polymer-element.html">
-<link rel="import" href="../../../../../bower_components/polymer/lib/elements/dom-repeat.html">
-<link rel="import" href="./u-user.html">
 
-<dom-module id="u-users">
+<dom-module id="u-user">
     <template>
         <style>
             :host {
                 display: block
             }
 
-            .u-list {
-                padding: 8px;
-                border: 2px dashed #f76707;
+            * {
+                box-sizing: border-box;
+            }
+
+            .media {
+                border: 2px solid #f76707;
                 border-radius: 5px;
                 background-color: #fff4e6;
-                max-width: 100%;
-                margin: 0 auto;
+                width: 100%;
+            }
+
+            .media {
+                display: grid;
+                grid-template-columns: 1fr 3fr;
+                grid-template-areas: "img content";
+                grid-template-rows: 128px auto;
+                margin-bottom: 1em;
+            }
+
+            .media .image {
+                grid-area: img;
+                background-color: #ffd8a8;
+                overflow: hidden;
+            }
+
+            .media .image img {
+                width: 100%;
+            }
+
+            .media .text {
+                color: #f76707;
+                grid-area: content;
+                padding: 0px 10px 10px 10px;
             }
         </style>
-        
-        <div class="u-list">
-            <template is="dom-repeat" items="[[data]]">
-                <u-user user="[[item]]"></u-user>
-            </template>
+        <div class="media">
+            <div class="image"><img src="[[user.avatar_url]]" title="[[user.login]]"></div>
+            <div class="text"><h2>[[user.login]]</h2></div>
         </div>
     </template>
 
     <script>
         /**
-         * `u-users` Description
+         * `u-user` Description
          *
          * @summary ShortDescription.
          * @customElement
          * @polymer
          * @extends {Polymer.Element}
          */
-        class UUsers extends Polymer.Element {
+        class UUser extends Polymer.Element {
             /**
              * String providing the tag name to register the element under.
              */
             static get is() {
-                return 'u-users';
+                return 'u-user';
             }
 
             /**
@@ -48,8 +70,8 @@
              */
             static get properties() {
                 return {
-                    data: {
-                        type: Array
+                    user: {
+                        type: Object
                     }
                 };
             }
@@ -69,8 +91,9 @@
             ready() {
                 super.ready();
             }
+
         }
 
-        window.customElements.define(UUsers.is, UUsers);
+        window.customElements.define(UUser.is, UUser);
     </script>
 </dom-module>

@@ -10,8 +10,6 @@
     <script src="../../bower_components/webcomponentsjs/webcomponents-loader.js"></script>
     <script src="../../bower_components/web-component-tester/browser.js"></script>
     <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
-
-    <link rel="import" href="../../src/users-app/components/u-users.html">
 </head>
 
 <body>
@@ -40,7 +38,7 @@
                     ]
                 );
             });
-            
+
             teardown(() => {
                 server.restore();
             });
@@ -49,7 +47,7 @@
                 setup(() => {
                     ajax = fixture('UUsersTestFixture');
                 });
-                test('has sane defaults that love you', () => {
+                test('has the correct response from server', () => {
                     request = ajax.generateRequest();
                     server.respond();
                     expect(request.response).to.be.ok;

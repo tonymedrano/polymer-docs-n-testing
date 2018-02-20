@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "elements": [
     {
-      "description": "# This is an h1 heading\n`<u-users>` injects a healthy dose of awesome into your page.\n## This is an h2 heading\nIn typical use, just slap some `<u-users>` at the top of your body:\n<body>\n  <u-users></u-users>\nWham! It's all awesome now!",
+      "description": "`<u-users>` injects this element inside `<users-app>` element.",
       "summary": "",
       "path": "src\\users-app\\components\\u-users.html",
       "properties": [
@@ -588,11 +588,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 102,
+              "line": 94,
               "column": 20
             },
             "end": {
-              "line": 104,
+              "line": 96,
               "column": 21
             }
           },
@@ -607,11 +607,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 106,
+              "line": 98,
               "column": 20
             },
             "end": {
-              "line": 108,
+              "line": 100,
               "column": 21
             }
           },
@@ -867,11 +867,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 116,
+              "line": 108,
               "column": 12
             },
             "end": {
-              "line": 119,
+              "line": 111,
               "column": 13
             }
           },
@@ -2749,11 +2749,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 124,
+              "line": 116,
               "column": 12
             },
             "end": {
-              "line": 126,
+              "line": 118,
               "column": 13
             }
           },
@@ -2770,11 +2770,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 132,
+              "line": 124,
               "column": 12
             },
             "end": {
-              "line": 134,
+              "line": 126,
               "column": 13
             }
           },
@@ -2791,11 +2791,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 140,
+              "line": 132,
               "column": 12
             },
             "end": {
-              "line": 152,
+              "line": 144,
               "column": 13
             }
           },
@@ -3751,11 +3751,11 @@
       "metadata": {},
       "sourceRange": {
         "start": {
-          "line": 97,
+          "line": 89,
           "column": 8
         },
         "end": {
-          "line": 154,
+          "line": 146,
           "column": 9
         }
       },
@@ -3768,11 +3768,11 @@
           "description": "String contains the api url.",
           "sourceRange": {
             "start": {
-              "line": 102,
+              "line": 94,
               "column": 20
             },
             "end": {
-              "line": 104,
+              "line": 96,
               "column": 21
             }
           },
@@ -3784,11 +3784,11 @@
           "description": "Table that handle data to the view.",
           "sourceRange": {
             "start": {
-              "line": 106,
+              "line": 98,
               "column": 20
             },
             "end": {
-              "line": 108,
+              "line": 100,
               "column": 21
             }
           },
@@ -3805,7 +3805,7 @@
       "tagname": "u-users"
     },
     {
-      "description": "# This is an h1 heading\n`<users-app>` injects a healthy dose of awesome into your page.\n## This is an h2 heading\nIn typical use, just slap some `<users-app>` at the top of your body:\n<body>\n  <users-app></users-app>\nWham! It's all awesome now!",
+      "description": "`<users-app>` injects this element inside body page.\n## This uses an h2 heading for the title\n<body>\n  <users-app></users-app>\n</body>",
       "summary": "",
       "path": "src\\users-app\\users-app.html",
       "properties": [
@@ -4391,11 +4391,11 @@
           "privacy": "public",
           "sourceRange": {
             "start": {
-              "line": 45,
+              "line": 43,
               "column": 10
             },
             "end": {
-              "line": 48,
+              "line": 46,
               "column": 11
             }
           },
@@ -4652,11 +4652,11 @@
           "privacy": "protected",
           "sourceRange": {
             "start": {
-              "line": 52,
+              "line": 50,
               "column": 6
             },
             "end": {
-              "line": 54,
+              "line": 52,
               "column": 7
             }
           },
@@ -7473,11 +7473,11 @@
       "metadata": {},
       "sourceRange": {
         "start": {
-          "line": 40,
+          "line": 38,
           "column": 4
         },
         "end": {
-          "line": 55,
+          "line": 53,
           "column": 5
         }
       },
@@ -7490,11 +7490,11 @@
           "description": "String for the application title.",
           "sourceRange": {
             "start": {
-              "line": 45,
+              "line": 43,
               "column": 10
             },
             "end": {
-              "line": 48,
+              "line": 46,
               "column": 11
             }
           },

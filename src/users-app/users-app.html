@@ -1,7 +1,4 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
-<link rel="import" href="../../bower_components/promise-polyfill/promise-polyfill-lite.html">
-<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
-<link rel="import" href="../../bower_components/paper-input/paper-input.html">
 <link rel="import" href="./components/u-users.html">
 
 <dom-module id="users-app">
@@ -11,7 +8,7 @@
         display: block;
       }
 
-      h2, .unfocused-line {
+      h2 {
         color: #f76707;
       }
 
@@ -21,21 +18,13 @@
         margin: 0 auto;
       }
     </style>
-    <iron-ajax 
-        auto 
-        id="requestRepos" 
-        url="https://api.github.com/users" 
-        handle-as="json" 
-        on-response="handleResponse"
-        debounce-duration="300">
-    </iron-ajax>
-
     <div class="container">
-        <paper-input  label="Search by name"></paper-input>
       <h2>[[tiltle]]!</h2>
-      <u-users data="[[repos]]"></u-users>
+        <u-users url="https://api.github.com/users"></u-users>
     </div>
   </template>
+
+  
 
   <script>
     /**
@@ -53,20 +42,11 @@
           repos: {
               type: Array
           }
-        };
+        }
       }
 
       ready() {
           super.ready();
-          this.$.requestRepos.generateRequest();
-      }
-
-      /**
-      * Method to get data from api
-      * @handleResponse
-      */
-      handleResponse(data) {
-          this.repos = data.detail.response;
       }
     }
 

@@ -1,74 +1,134 @@
-<link rel="import" href="../../../../../bower_components/polymer/polymer-element.html">
-<link rel="import" href="../../../../../bower_components/polymer/lib/elements/dom-repeat.html">
-<link rel="import" href="./u-user.html">
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../bower_components/promise-polyfill/promise-polyfill-lite.html">
+<link rel="import" href="../../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../../bower_components/polymer/lib/elements/dom-repeat.html">
 
 <dom-module id="u-users">
     <template>
         <style>
             :host {
-                display: block
+                display: block;
             }
 
-            .u-list {
-                padding: 8px;
-                border: 2px dashed #f76707;
-                border-radius: 5px;
-                background-color: #fff4e6;
-                max-width: 100%;
+            h2 {
+                color: #f76707;
+            }
+
+            .list-container {
+                font-family: 'Poppins', sans-serif;
+                max-width: 940px;
                 margin: 0 auto;
             }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            .media {
+                border: 2px solid #f76707;
+                border-radius: 5px;
+                background-color: #fff4e6;
+                width: 100%;
+            }
+
+            .media {
+                display: grid;
+                grid-template-columns: 1fr 3fr;
+                grid-template-areas: "img content";
+                grid-template-rows: 128px auto;
+                margin-bottom: 1em;
+            }
+
+            .media .image {
+                grid-area: img;
+                background-color: #ffd8a8;
+                overflow: hidden;
+            }
+
+            .media .image img {
+                width: 100%;
+            }
+
+            .media .text {
+                color: #f76707;
+                grid-area: content;
+                padding: 0px 10px 10px 10px;
+            }
         </style>
-        
-        <div class="u-list">
-            <template is="dom-repeat" items="[[data]]">
-                <u-user user="[[item]]"></u-user>
+        <iron-ajax 
+             auto 
+             id="requestRepos" 
+             url=[[url]] 
+             handle-as="json" 
+             on-response="_handleResponse" 
+             on-error="_handleErrorResponse"
+             debounce-duration="300">
+        </iron-ajax>
+
+        <div class="list-container">
+            <paper-input label="Search by name" value="{{searchString::input}}"></paper-input><br />
+            <template is="dom-repeat" items="{{repos}}" as="user" filter="{{_computeFilter(searchString)}}">
+                <div class="media">
+                    <div class="image">
+                        <img src="[[user.avatar_url]]" title="[[user.login]]">
+                    </div>
+                    <div class="text">
+                        <h2>[[user.login]]</h2>
+                    </div>
+                </div>
             </template>
         </div>
     </template>
 
     <script>
         /**
-         * `u-users` Description
-         *
-         * @summary ShortDescription.
          * @customElement
          * @polymer
-         * @extends {Polymer.Element}
          */
         class UUsers extends Polymer.Element {
-            /**
-             * String providing the tag name to register the element under.
-             */
-            static get is() {
-                return 'u-users';
-            }
-
-            /**
-             * Object describing property-related metadata used by Polymer features
-             */
+            static get is() { return 'u-users'; }
             static get properties() {
                 return {
-                    data: {
+                    url: {
+                        type: String
+                    },
+                    repos: {
                         type: Array
                     }
-                };
+                }
             }
 
-            /**
-             * Instance of the element is created/upgraded. Use: initializing state,
-             * set up event listeners, create shadow dom.
-             * @constructor
-             */
-            constructor() {
-                super();
-            }
-
-            /**
-             * Use for one-time configuration of your component after local DOM is initialized. 
-             */
             ready() {
                 super.ready();
+                this.$.requestRepos.generateRequest();
             }
+            /**
+            * Method to get data from api
+            * @handleResponse
+            */
+            _handleResponse(data) {
+                this.repos = data.detail.response;
+            }
+            
+            _handleErrorResponse(event){
+                console.log(`Cannot connect to server. ${event.detail.error}`);
+            }
+
+            _computeFilter(string) {
+                if (!string) {
+                    // set filter to null to disable filtering
+                    return null;
+                } else {
+                    // return a filter function for the current search string
+                    string = string.toLowerCase();
+                    return function (user) {
+                        var name = user.login.toLowerCase();
+                        return (name.indexOf(string) != -1);
+                    };
+                }
+            }
+
         }
 
         window.customElements.define(UUsers.is, UUsers);

@@ -1,53 +1,47 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <title>users-app test</title>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-    <script src="../../../webcomponentsjs/webcomponents-loader.js"></script>
-    <script src="../../../web-component-tester/browser.js"></script>
+  <title>users-app test</title>
 
-    <link rel="import" href="../../src/users-app/users-app.html">
-  </head>
-  <body>
+  <script src="../../bower_components/webcomponentsjs/webcomponents-loader.js"></script>
+  <script src="../../bower_components/web-component-tester/browser.js"></script>
 
-    <test-fixture id="BasicTestFixture">
-      <template>
-        <users-app></users-app>
-      </template>
-    </test-fixture>
+  <link rel="import" href="../../src/users-app/users-app.html">
+  <link rel="import" href="../../src/users-app/components/u-users.html">
+</head>
 
-    <test-fixture id="ChangedPropertyTestFixture">
-      <template>
-        <users-app prop1="new-prop1"></users-app>
-      </template>
-    </test-fixture>
+<body>
 
-    <script>
-      suite('users-app', function() {
+  <test-fixture id="UserAppTestFixture">
+    <template>
+      <users-app></users-app>
+    </template>
+  </test-fixture>
 
-        test('instantiating the element with default properties works', function() {
-          var element = fixture('BasicTestFixture');
-          assert.equal(element.prop1, 'users-app');
-          var elementShadowRoot = element.shadowRoot;
-          var elementHeader = elementShadowRoot.querySelector('h2');
-          assert.equal(elementHeader.innerHTML, 'Hello users-app!');
-        });
+  <test-fixture id="UUsersTestFixture">
+    <template>
+      <u-users></u-users>
+    </template>
+  </test-fixture>
 
-        test('setting a property on the element works', function() {
-          // Create a test fixture
-          var element = fixture('ChangedPropertyTestFixture');
-          assert.equal(element.prop1, 'new-prop1');
-          var elementShadowRoot = element.shadowRoot;
-          var elementHeader = elementShadowRoot.querySelector('h2');
-          assert.equal(elementHeader.innerHTML, 'Hello new-prop1!');
-        });
+  <script>
+    suite('users-app', () => {
 
+      test('instantiating the users-app element with default property works', () => {
+        let element = fixture('UserAppTestFixture');
+        let elementShadowRoot = element.shadowRoot;
+        let elementHeader = elementShadowRoot.querySelector('h2');
+        assert.equal(elementHeader.innerHTML, 'User Dashboard App!');
       });
-    </script>
+      
+    });
+  </script>
 
 
-  </body>
+</body>
+
 </html>

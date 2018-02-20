@@ -24,23 +24,28 @@
     </div>
   </template>
 
-  
-
   <script>
     /**
-     * @customElement
-     * @polymer
-     */
+   * # This is an h1 heading
+   * `<users-app>` injects a healthy dose of awesome into your page.
+   * ## This is an h2 heading
+   * In typical use, just slap some `<users-app>` at the top of your body:
+   * <body>
+   *   <users-app></users-app>
+   * Wham! It's all awesome now!
+   * @customElement
+   * @polymer
+   * @demo http://localhost:8081/
+   *
+   */
     class UsersApp extends Polymer.Element {
       static get is() { return 'users-app'; }
       static get properties() {
         return {
+          /** String for the application title. */
           tiltle: {
             type: String,
             value: 'User Dashboard App'
-          },
-          repos: {
-              type: Array
           }
         }
       }

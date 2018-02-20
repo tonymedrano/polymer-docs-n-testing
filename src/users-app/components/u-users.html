@@ -1,4 +1,4 @@
-<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+
 <link rel="import" href="../../../bower_components/promise-polyfill/promise-polyfill-lite.html">
 <link rel="import" href="../../../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../../../bower_components/paper-input/paper-input.html">
@@ -83,38 +83,61 @@
 
     <script>
         /**
-         * @customElement
-         * @polymer
-         */
+        * # This is an h1 heading
+        * `<u-users>` injects a healthy dose of awesome into your page.
+        * ## This is an h2 heading
+        * In typical use, just slap some `<u-users>` at the top of your body:
+        * <body>
+        *   <u-users></u-users>
+        * Wham! It's all awesome now!
+        * @customElement
+        * @polymer
+        * @demo http://localhost:8081/
+        *
+        */
         class UUsers extends Polymer.Element {
             static get is() { return 'u-users'; }
             static get properties() {
                 return {
+                    /** String contains the api url. */
                     url: {
                         type: String
                     },
+                    /** Table that handle data to the view. */
                     repos: {
                         type: Array
                     }
                 }
             }
 
+            /**
+            * Method to handle the api request and starts application
+            * @ready
+            */
             ready() {
                 super.ready();
                 this.$.requestRepos.generateRequest();
             }
             /**
             * Method to get data from api
-            * @handleResponse
+            * @_handleResponse
             */
             _handleResponse(data) {
                 this.repos = data.detail.response;
             }
             
+            /**
+            * Method to handle errors data from api
+            * @_handleErrorResponse()
+            */
             _handleErrorResponse(event){
                 console.log(`Cannot connect to server. ${event.detail.error}`);
             }
 
+            /**
+            * Method to filter data from api
+            * @_computeFilter
+            */
             _computeFilter(string) {
                 if (!string) {
                     // set filter to null to disable filtering
